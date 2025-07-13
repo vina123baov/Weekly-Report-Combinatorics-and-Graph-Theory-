@@ -1,0 +1,48 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\begin{document}
+
+\section{Christmas Party}
+
+\textbf{Problem:}  
+There are $n$ children at a Christmas party, and each of them has brought a gift.  
+The idea is that everybody will get a gift brought by someone else.  
+
+In how many ways can the gifts be distributed?
+
+\textbf{Input:}  
+The only input line has an integer $n$: the number of children.
+
+\textbf{Output:}  
+Print the number of ways modulo $10^9 + 7$.
+
+\textbf{Constraints:}
+\begin{itemize}
+    \item $1 \le n \le 10^6$
+\end{itemize}
+
+\textbf{Example:}
+\begin{verbatim}
+Input:
+4
+Output:
+9
+\end{verbatim}
+
+\textbf{Approach:}  
+This is a classic derangement problem. The number of valid gift distributions (where no one gets their own gift) is equal to the number of \textit{derangements} of $n$ elements.  
+The recurrence relation is:  
+\[
+D(n) = (n - 1) \cdot (D(n - 1) + D(n - 2))
+\]  
+With base cases:  
+\[
+D(1) = 0, \quad D(2) = 1
+\]  
+Use dynamic programming with modulo $10^9 + 7$ to avoid overflow.
+
+\textbf{Time Complexity:} $\mathcal{O}(n)$
+
+\end{document}
