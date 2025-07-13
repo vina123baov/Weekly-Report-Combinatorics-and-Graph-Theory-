@@ -31,8 +31,6 @@ long long partition_k(int n, int k) {
 //kiểm tra điều kiện p_k(n) < n!/k!
 bool check_condition(int n, int k) {
     long long pk = partition_k(n, k);
-    
-    // Tính n!/k!
     long long factorial_ratio = 1;
     for (int i = n; i > k; i--) {
         factorial_ratio *= i;

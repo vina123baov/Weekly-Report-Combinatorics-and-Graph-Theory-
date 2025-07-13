@@ -5,9 +5,6 @@
 
 using namespace std;
 
-// Graphical Sequence
-
-// (Định lý Euler)
 bool checkEulerTheorem(vector<int>& degrees) {
     int sum = 0;
     for (int d : degrees) {
@@ -16,7 +13,6 @@ bool checkEulerTheorem(vector<int>& degrees) {
     return sum % 2 == 0;
 }
 
-// Havel-Hakimi
 bool havelHakimi(vector<int> degrees) {
     while (!degrees.empty()) {
         sort(degrees.begin(), degrees.end(), greater<int>());

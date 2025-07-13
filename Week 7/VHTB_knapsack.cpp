@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// Câu (a): Knapsack với weight = 1 cho tất cả items
+// Câu (a):
 int knapsack_weight_1(vector<int>& values, int W) {
     sort(values.rbegin(), values.rend());
     int total_value = 0;
@@ -18,7 +18,7 @@ int knapsack_weight_1(vector<int>& values, int W) {
     return total_value;
 }
 
-// Câu (b): Knapsack với weight = w cho tất cả items
+// Câu (b):
 int knapsack_equal_weight(vector<int>& values, int W, int w) {
     if (w > W) return 0;
     
@@ -34,7 +34,7 @@ int knapsack_equal_weight(vector<int>& values, int W, int w) {
     return total_value;
 }
 
-// Câu (c): Knapsack 0-1 cơ bản bằng Dynamic Programming
+// Câu (c):
 int knapsack_01_dp(vector<int>& weights, vector<int>& values, int W) {
     int n = weights.size();
     vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
@@ -77,7 +77,7 @@ void print_selected_items(vector<int>& weights, vector<int>& values, int W) {
     cout << endl;
 }
 
-// Câu (d): Phân tích độ phức tạp thời gian
+// Câu (d):
 void analyze_complexity() {
     cout << "\n=== PHAN TICH DO PHUC TAP THOI GIAN ===" << endl;
     cout << "Cau (a) - Weight = 1: O(n log n) do sort" << endl;
@@ -114,30 +114,30 @@ int main() {
     for (int w : test_weights) cout << w << " ";
     cout << endl;
     
-    // Câu (a): Tất cả items có weight = 1
+    // Câu (a):
     cout << "\n--- CAU (a): Weight = 1 cho tat ca items ---" << endl;
     vector<int> values_copy = test_values;
     int result_a = knapsack_weight_1(values_copy, W);
     cout << "Ket qua: " << result_a << endl;
     
-    // Câu (b): Tất cả items có weight = w
+    // Câu (b):
     cout << "\n--- CAU (b): Weight = 2 cho tat ca items ---" << endl;
     values_copy = test_values;
     int w = 2;
     int result_b = knapsack_equal_weight(values_copy, W, w);
     cout << "Ket qua voi weight = " << w << ": " << result_b << endl;
     
-    // Câu (c): Knapsack 0-1 cơ bản
+    // Câu (c):
     cout << "\n--- CAU (c): Knapsack 0-1 DP ---" << endl;
     int result_c = knapsack_01_dp(test_weights, test_values, W);
     cout << "Ket qua: " << result_c << endl;
     print_selected_items(test_weights, test_values, W);
     
-    // So sánh với version tối ưu space
+    // So sánh
     int result_optimized = knapsack_01_optimized(test_weights, test_values, W);
     cout << "Ket qua (space optimized): " << result_optimized << endl;
     
-    // Câu (d): Phân tích độ phức tạp
+    // Câu (d):
     analyze_complexity();
     
     cout << "\n=== TEST CASE KHAC ===" << endl;

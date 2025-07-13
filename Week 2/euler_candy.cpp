@@ -1,9 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// Euler Candy
-
-// (a) Đếm nghiệm nguyên dương
 long long countPositiveSolutions(int m, int n) {
     if (m < n) return 0;
     long long result = 1;
@@ -13,7 +10,6 @@ long long countPositiveSolutions(int m, int n) {
     return result;
 }
 
-// (b) Đếm nghiệm nguyên không âm
 long long countNonNegativeSolutions(int m, int n) {
     long long result = 1;
     for (int i = 0; i < n - 1; i++) {
