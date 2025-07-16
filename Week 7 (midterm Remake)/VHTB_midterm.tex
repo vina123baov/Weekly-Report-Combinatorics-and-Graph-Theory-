@@ -131,7 +131,7 @@ S(n,m) = S(n-1,m-1) + m \cdot S(n-1,m)
 \end{algorithmic}
 \end{algorithm}
 
-Đáp án:
+:
 \[
 \boxed{m! \times S(n,m)}
 \]
@@ -179,7 +179,7 @@ Với \( n=2 \), \( m=2 \):
 Tổng: \( 2^2 = 4 \) cách.
 \end{example}
 
-Đáp án:
+:
 \[
 \boxed{m^n}
 \]
@@ -501,82 +501,6 @@ Hệ số của \( x_1^{k_1}\cdots x_m^{k_m} \) được tạo từ:
 \binom{10}{3,3,4} = \binom{10}{3}\binom{7}{3}\binom{4}{4} = 120 \times 35 \times 1 = 4200
 \]
 
-\section*{5: Bài Toán Chia Kẹo Euler}
-
-\subsection*{Phần (a): Phát biểu định lý}
-Số nghiệm nguyên không âm của:
-\[
-x_1 + \cdots + x_n = k
-\]
-là:
-\[
-\binom{k+n-1}{n-1}
-\]
-
-\subsection*{Phần (b): Chứng minh Stars and Bars}
-
-Biểu diễn \( k \) sao và \( n-1 \) vạch. Số cách:
-\[
-\binom{k+n-1}{n-1}
-\]
-
-\subsubsection*{Thuật toán}
-\begin{algorithm}
-\caption{Tính số nghiệm Stars and Bars}
-\begin{algorithmic}
-\Function{StarsAndBars}{$k,n$}
-    \State \Return \Call{Binomial}{$k+n-1,n-1$}
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
-
-\subsection*{Phần (c): Điều kiện \( x_i \geq 1 \)}
-Đặt \( y_i = x_i - 1 \):
-\[
-\sum y_i = k - n
-\]
-Số nghiệm:
-\[
-\binom{k-1}{n-1}
-\]
-
-\subsection*{Phần (d): Điều kiện \( x_i \geq a_i \)}
-Đặt \( y_i = x_i - a_i \), \( S = \sum a_i \):
-\[
-\sum y_i = k - S
-\]
-Số nghiệm:
-\[
-\binom{k-S+n-1}{n-1}
-\]
-
-\subsection*{Phần (e): Điều kiện hỗn hợp}
-\( x_i \geq 2 \) (\( i \leq m \)), \( x_i \geq 0 \) (\( i > m \)):
-\[
-\binom{k-2m+n-1}{n-1}
-\]
-
-\subsection*{Phần (f): Điều kiện giới hạn trên}
-Dùng inclusion-exclusion:
-\[
-\text{Số nghiệm} = \binom{k+n-1}{n-1} - \sum_i |A_i| + \sum_{i<j} |A_i \cap A_j| - \cdots
-\]
-Với \( A_i \): tập nghiệm \( x_i > b_i \).
-
-\subsubsection*{Thuật toán}
-\begin{algorithm}
-\caption{Tính số nghiệm với giới hạn trên}
-\begin{algorithmic}
-\Function{StarsAndBarsWithUpperBound}{$k,n,b_1,\ldots,b_n$}
-    \State result $\gets$ \Call{StarsAndBars}{$k,n$}
-    \For{each subset $S$ of $\{1,\ldots,n\}$}
-        \State $s \gets \sum_{i \in S} (b_i + 1)$
-        \State result $\gets$ result + $(-1)^{|S|}$ * \Call{StarsAndBars}{$k-s,n$}
-    \EndFor
-    \State \Return result
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
 
 \section*{6: Đếm Đơn Thức Monic}
 
@@ -682,40 +606,7 @@ s(n,n-2) = 2\binom{n}{3} + \frac{1}{2}\binom{n}{2}\binom{n-2}{2}
     \item Hai chu trình độ dài 2: \( \frac{1}{2}\binom{n}{2}\binom{n-2}{2} \).
 \end{itemize}
 
-\section*{9: Euler's Theorem và Havel-Hakimi}
 
-\subsection*{Phần (a): Phát biểu các định lý}
-
-\begin{theorem}[Euler's Handshaking Lemma]
-\[
-\sum_{v \in V} \deg(v) = 2|E|
-\]
-\end{theorem}
-
-\textbf{Hệ quả}: Số đỉnh bậc lẻ chẵn.
-
-\textbf{Thuật toán Havel-Hakimi}:
-\begin{algorithm}
-\caption{Havel-Hakimi}
-\begin{algorithmic}
-\Function{HavelHakimi}{$d_1,\ldots,d_n$}
-    \While{not all $d_i = 0$}
-        \State Sort $d_i$ descending
-        \If{$d_1 > n-1$ \textbf{or} any $d_i < 0$} \Return False
-        \EndIf
-        \For{$i \gets 2$ \textbf{to} $d_1+1$}
-            \State $d_i \gets d_i - 1$
-        \EndFor
-        \State Remove $d_1$
-        \State $n \gets n-1$
-    \EndWhile
-    \State \Return True
-\EndFunction
-\end{algorithmic}
-\end{algorithm}
-
-\subsection*{Phần (b): Áp dụng cho dãy \( 9,9,9,9,9,9,9,8,8,8 \)}
-Tổng: \( 87 \) (lẻ) \(\Rightarrow\) không graphical.
 
 \section*{10: Đồ Thị Đặc Biệt}
 
@@ -771,7 +662,6 @@ Kết quả là nguyên nếu \( n-1 \) chia hết cho 2, tức là \( n \) lẻ
 \end{algorithmic}
 \end{algorithm}
 
-Đáp án:
 \[
 \boxed{\frac{n(n-1)}{2} \text{ luôn nguyên, chia hết cho } n \text{ khi } n \text{ lẻ}}
 \]
@@ -834,7 +724,6 @@ Cho \( n=5 \):
 \end{itemize}
 \end{example}
 
-Đáp án:
 \[
 \boxed{\text{Dãy bậc: } (1, 2, \ldots, 2, 1), \ |E| = n-1}
 \]
@@ -893,7 +782,6 @@ Cho \( n=5 \):
 \end{itemize}
 \end{example}
 
-Đáp án:
 \[
 \boxed{\text{Dãy bậc: } (2, 2, \ldots, 2), \ |E| = n}
 \]
@@ -958,7 +846,7 @@ Cho \( n=5 \):
 \end{itemize}
 \end{example}
 
-Đáp án:
+:
 \[
 \boxed{\text{Dãy bậc: } (n, 3, \ldots, 3), \ |E| = 2n}
 \]
@@ -1008,7 +896,6 @@ kn \text{ chẵn}
 \end{algorithmic}
 \end{algorithm}
 
-Đáp án:
 \[
 \boxed{\text{Tồn tại nếu } kn \text{ chẵn và } k \leq n-1}
 \]
@@ -1078,7 +965,6 @@ Cho \( K_{3,2} \):
 \end{itemize}
 \end{example}
 
-Đáp án:
 \[
 \boxed{\text{Dãy bậc: } (n, \ldots, n, m, \ldots, m), \ |E| = mn}
 \]
